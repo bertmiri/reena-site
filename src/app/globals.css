@@ -76,3 +76,13 @@ body {
     scroll-behavior: auto !important;
   }
 }
+
+/* Reliability shim: plain-CSS desktop visibility (hidden+md:block proved flaky in this env) */
+.desktop-only {
+  display: none;
+}
+@media (min-width: 48rem) {
+  .desktop-only {
+    display: block;
+  }
+}

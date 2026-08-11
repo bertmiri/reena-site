@@ -96,7 +96,7 @@ export default async function ClientsPage({
         </div>
       ) : (
         <>
-          <div className="mt-6 hidden overflow-hidden rounded-lg border border-sand md:block">
+          <div className="mt-6 desktop-only overflow-hidden rounded-lg border border-sand">
             <table className="w-full bg-white/60 text-left text-sm">
               <thead className="border-b border-sand text-xs uppercase tracking-wide text-stone">
                 <tr>
