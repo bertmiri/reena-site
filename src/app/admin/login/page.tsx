@@ -28,7 +28,7 @@ export default async function LoginPage({
         <header className="mb-10 text-center">
           <p className="font-display text-3xl text-ink">Reena Mazlan</p>
           <p className="mt-1 text-sm tracking-wide text-stone">Agent Portal</p>
-          <div className="thread-divider mx-auto mt-6 w-24" />
+          <div className="thread-divider thread-divider--blend mx-auto mt-6 w-24" />
         </header>
 
         <form action={signIn} className="space-y-5">

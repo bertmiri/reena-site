@@ -1,14 +1,17 @@
 @import "tailwindcss";
 
 @theme inline {
-  /* Palette */
+  /* Palette — RM Property Hub adaptation */
   --color-paper: #faf7f2;
-  --color-ink: #16302b;
-  --color-ink-soft: #24443d;
+  --color-ink: #201d19;
+  --color-ink-soft: #35312a;
+  --color-gold: #a8873b;
+  --color-gold-deep: #8c7030;
+  --color-champagne: #eadfc8;
+  --color-sand: #e8dfd2;
+  --color-stone: #6b655c;
   --color-hibiscus: #a63a32;
   --color-hibiscus-deep: #8c2f28;
-  --color-sand: #e8dfd2;
-  --color-stone: #5c6662;
   --color-white: #ffffff;
 
   /* Type */
@@ -29,27 +32,38 @@ body {
 }
 
 ::selection {
-  background-color: var(--color-hibiscus);
+  background-color: var(--color-gold);
   color: var(--color-paper);
 }
 
 :focus-visible {
-  outline: 2px solid var(--color-hibiscus);
+  outline: 2px solid var(--color-gold-deep);
   outline-offset: 2px;
 }
 
-/* Signature: woven-thread divider */
+/* Signature: woven-thread divider (champagne gold) */
 .thread-divider {
   height: 3px;
   background-image: repeating-linear-gradient(
     90deg,
-    var(--color-hibiscus) 0 14px,
+    var(--color-gold) 0 14px,
     transparent 14px 22px,
     var(--color-sand) 22px 36px,
     transparent 36px 44px
   );
   border: none;
-  opacity: 0.85;
+  opacity: 0.9;
+}
+
+/* Blend variant: gold woven with hibiscus (login + select portal accents) */
+.thread-divider--blend {
+  background-image: repeating-linear-gradient(
+    90deg,
+    var(--color-gold) 0 14px,
+    transparent 14px 22px,
+    var(--color-hibiscus) 22px 36px,
+    transparent 36px 44px
+  );
 }
 
 @media (prefers-reduced-motion: reduce) {

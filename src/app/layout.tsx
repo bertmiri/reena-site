@@ -20,11 +20,11 @@ export const metadata: Metadata = {
     process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000"
   ),
   title: {
-    default: "Reena Mazlan — Property Advisor, Miri",
-    template: "%s | Reena Mazlan",
+    default: "RM Property Hub — Reena Mazlan | Property Advisor, Miri",
+    template: "%s | RM Property Hub",
   },
   description:
-    "Your trusted property advisor in Miri, Sarawak. Buying, selling and home financing guidance, with secure document handling.",
+    "RM Property Hub — find, invest and grow with Reena Mazlan, your trusted property advisor in Miri, Sarawak. Home financing guidance and secure document handling.",
 };
 
 export default function RootLayout({
