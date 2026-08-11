@@ -4,6 +4,7 @@ import { z } from "zod";
 import { createClient } from "@/lib/supabase/server";
 import { CLIENT_STATUSES, STATUS_LABELS } from "@/lib/clients";
 import { updateClientRecord } from "../actions";
+import { UploadRequestsSection } from "./upload-requests-section";
 
 export const metadata = {
   title: "Client Details",
@@ -153,11 +154,13 @@ export default async function ClientDetailPage({
         </button>
       </form>
 
-      <section className="mt-12 rounded-lg border border-sand bg-white/50 px-5 py-6">
+      <UploadRequestsSection clientId={client.id} clientName={client.full_name} />
+
+      <section className="mt-6 rounded-lg border border-sand bg-white/50 px-5 py-6">
         <h2 className="font-display text-xl text-ink">Documents</h2>
         <p className="mt-2 text-sm text-stone">
-          Document collection arrives in the next phase — secure upload links,
-          categories and downloads will appear here.
+          Uploaded documents will appear here once the secure upload page is
+          live (next block).
         </p>
       </section>
     </div>
