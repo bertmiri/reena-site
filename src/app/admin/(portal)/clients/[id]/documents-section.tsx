@@ -31,7 +31,12 @@ export async function DocumentsSection({ clientId }: { clientId: string }) {
 
   return (
     <section className="mt-6 rounded-lg border border-sand bg-white/50 px-5 py-6">
-      <h2 className="font-display text-xl text-ink">Documents</h2>
+      <div className="flex flex-wrap items-center justify-between gap-3">
+        <h2 className="font-display text-xl text-ink">Documents</h2>
+        {documents.length > 0 && (
+          <a href={`/api/admin/clients/${clientId}/zip`} className="rounded-md border border-sand px-3 py-1.5 text-xs text-ink transition-colors hover:border-gold">Download All (.zip)</a>
+        )}
+      </div>
 
       {documents.length === 0 ? (
         <p className="mt-2 text-sm text-stone">
