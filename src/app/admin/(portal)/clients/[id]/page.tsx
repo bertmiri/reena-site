@@ -5,6 +5,7 @@ import { createClient } from "@/lib/supabase/server";
 import { CLIENT_STATUSES, STATUS_LABELS } from "@/lib/clients";
 import { updateClientRecord } from "../actions";
 import { UploadRequestsSection } from "./upload-requests-section";
+import { DocumentsSection } from "./documents-section";
 
 export const metadata = {
   title: "Client Details",
@@ -156,13 +157,7 @@ export default async function ClientDetailPage({
 
       <UploadRequestsSection clientId={client.id} clientName={client.full_name} />
 
-      <section className="mt-6 rounded-lg border border-sand bg-white/50 px-5 py-6">
-        <h2 className="font-display text-xl text-ink">Documents</h2>
-        <p className="mt-2 text-sm text-stone">
-          Uploaded documents will appear here once the secure upload page is
-          live (next block).
-        </p>
-      </section>
+      <DocumentsSection clientId={client.id} />
     </div>
   );
 }
