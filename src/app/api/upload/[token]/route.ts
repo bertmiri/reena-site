@@ -3,6 +3,7 @@ import { NextResponse, type NextRequest } from "next/server";
 import { createAdminClient } from "@/lib/supabase/admin";
 import { validateUploadToken } from "@/lib/upload-requests";
 import { sanitizeFilename, validateFile } from "@/lib/upload-validation";
+import { notifySubmission } from "@/lib/email";
 
 function clientIp(req: NextRequest): string | null {
   return req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ?? null;
@@ -172,6 +173,11 @@ export async function PATCH(
     null,
     { request_id: valid.requestId, document_count: count },
     clientIp(req)
+  );
+
+  await notifySubmission(
+    { clientName: valid.clientName, reference: valid.reference, clientId: valid.clientId },
+    count ?? 0
   );
 
   return NextResponse.json({

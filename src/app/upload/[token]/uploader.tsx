@@ -160,7 +160,7 @@ export function Uploader({
           {new Date().toLocaleString("en-MY")}
         </p>
         <p className="mt-6 text-sm text-stone">
-          Thank you — Reena will review your documents and be in touch. You can
+          Thank you — Reena has been notified and will be in touch. You can
           close this page.
         </p>
       </div>
