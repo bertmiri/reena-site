@@ -27,6 +27,8 @@ export async function DocumentsSection({ clientId }: { clientId: string }) {
     groups.set(name, [...(groups.get(name) ?? []), d]);
   }
 
+  const linkClass = "text-xs text-ink hover:text-gold-deep";
+
   return (
     <section className="mt-6 rounded-lg border border-sand bg-white/50 px-5 py-6">
       <h2 className="font-display text-xl text-ink">Documents</h2>
@@ -44,10 +46,7 @@ export async function DocumentsSection({ clientId }: { clientId: string }) {
               </h3>
               <ul className="mt-2 space-y-2">
                 {files.map((d) => (
-                  <li
-                    key={d.id}
-                    className="flex flex-wrap items-center justify-between gap-3 rounded-md border border-sand bg-white px-4 py-2.5 text-sm"
-                  >
+                  <li key={d.id} className="flex flex-wrap items-center justify-between gap-3 rounded-md border border-sand bg-white px-4 py-2.5 text-sm">
                     <div className="min-w-0">
                       <p className="truncate text-ink">✓ {d.original_filename}</p>
                       <p className="text-xs text-stone">
@@ -56,25 +55,9 @@ export async function DocumentsSection({ clientId }: { clientId: string }) {
                       </p>
                     </div>
                     <div className="flex items-center gap-4">
-                      
-                        href={`/api/admin/documents/${d.id}/download?mode=view`}
-                        target="_blank"
-                        rel="noopener"
-                        className="text-xs text-ink hover:text-gold-deep"
-                      >
-                        View
-                      </a>
-                      
-                        href={`/api/admin/documents/${d.id}/download`}
-                        className="text-xs text-ink hover:text-gold-deep"
-                      >
-                        Download
-                      </a>
-                      <DeleteDocumentButton
-                        documentId={d.id}
-                        clientId={clientId}
-                        filename={d.original_filename}
-                      />
+                      <a href={`/api/admin/documents/${d.id}/download?mode=view`} target="_blank" rel="noopener" className={linkClass}>View</a>
+                      <a href={`/api/admin/documents/${d.id}/download`} className={linkClass}>Download</a>
+                      <DeleteDocumentButton documentId={d.id} clientId={clientId} filename={d.original_filename} />
                     </div>
                   </li>
                 ))}
