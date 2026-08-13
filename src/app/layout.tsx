@@ -1,18 +1,19 @@
 import type { Metadata } from "next";
-import { Figtree, Newsreader } from "next/font/google";
+import { Cormorant_Garamond, Jost } from "next/font/google";
 import "./globals.css";
 
-const figtree = Figtree({
+const jost = Jost({
   subsets: ["latin"],
-  variable: "--font-figtree",
+  variable: "--font-jost",
   display: "swap",
 });
 
-const newsreader = Newsreader({
+const cormorant = Cormorant_Garamond({
   subsets: ["latin"],
-  variable: "--font-newsreader",
-  display: "swap",
+  weight: ["500", "600", "700"],
   style: ["normal", "italic"],
+  variable: "--font-cormorant",
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -33,7 +34,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${figtree.variable} ${newsreader.variable}`}>
+    <html lang="en" className={`${jost.variable} ${cormorant.variable}`}>
       <body>{children}</body>
     </html>
   );

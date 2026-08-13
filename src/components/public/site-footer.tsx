@@ -24,7 +24,6 @@ export function SiteFooter({ settings }: { settings: SiteSettings }) {
             <p className="text-xs font-medium uppercase tracking-wide text-gold">Follow</p>
             <p className="mt-3"><a href={settings.facebook} target="_blank" rel="noopener" className="text-paper/80 transition-colors hover:text-paper">Facebook</a></p>
             <p className="mt-1"><a href={settings.instagram} target="_blank" rel="noopener" className="text-paper/80 transition-colors hover:text-paper">Instagram</a></p>
-            <p className="mt-1"><a href={settings.telegram} target="_blank" rel="noopener" className="text-paper/80 transition-colors hover:text-paper">Telegram</a></p>
           </div>
         </div>
         <div className="thread-divider mt-10 opacity-40" />

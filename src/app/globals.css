@@ -15,8 +15,8 @@
   --color-white: #ffffff;
 
   /* Type */
-  --font-sans: var(--font-figtree), ui-sans-serif, system-ui, sans-serif;
-  --font-display: var(--font-newsreader), ui-serif, Georgia, serif;
+  --font-sans: var(--font-jost), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-cormorant), ui-serif, Georgia, serif;
 }
 
 :root {
@@ -85,4 +85,11 @@ body {
   .desktop-only {
     display: block;
   }
+}
+
+/* Dark-luxury tokens (public site) */
+@theme inline {
+  --color-night: #121110;
+  --color-night-soft: #1c1915;
+  --color-gold-bright: #d4af5f;
 }

@@ -1,84 +1,95 @@
+import Image from "next/image";
 import Link from "next/link";
 import { createAdminClient } from "@/lib/supabase/admin";
 import { getSiteSettings, whatsappLink } from "@/lib/site-settings";
+import { Calculator } from "./loan-calculator/calculator";
 
 export const revalidate = 300;
 
 export default async function HomePage() {
   const settings = await getSiteSettings();
   const admin = createAdminClient();
-  const { data: services } = await admin
-    .from("services")
-    .select("id, title, description")
-    .eq("active", true)
-    .order("sort_order")
-    .limit(3);
 
-  const card = "rounded-lg border border-sand bg-white/60 px-6 py-6";
+  const [{ data: services }, { data: loan }] = await Promise.all([
+    admin
+      .from("services")
+      .select("id, title, description")
+      .eq("active", true)
+      .order("sort_order")
+      .limit(3),
+    admin
+      .from("loan_settings")
+      .select(
+        "default_interest_rate, default_down_payment, default_tenure, minimum_tenure, maximum_tenure"
+      )
+      .eq("id", true)
+      .single(),
+  ]);
+
+  const loanDefaults = {
+    rate: Number(loan?.default_interest_rate ?? 4.2),
+    downPct: Number(loan?.default_down_payment ?? 10),
+    tenure: loan?.default_tenure ?? 30,
+    minTenure: loan?.minimum_tenure ?? 5,
+    maxTenure: loan?.maximum_tenure ?? 40,
+  };
 
   return (
-    <main>
-      <section className="bg-ink text-paper">
-        <div className="mx-auto max-w-5xl px-4 py-20 text-center sm:px-6 sm:py-28">
-          <p className="text-xs tracking-[0.3em] text-gold">MIRI · SARAWAK</p>
-          <h1 className="mx-auto mt-5 max-w-2xl font-display text-4xl leading-tight sm:text-5xl">
+    <main className="bg-night text-paper">
+      <section className="relative overflow-hidden">
+        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_60%_50%_at_50%_35%,#2a2318_0%,transparent_70%)]" />
+        <div className="relative mx-auto max-w-5xl px-4 pb-16 pt-10 text-center sm:px-6 sm:pb-20">
+          <Image src="/brand/logo.jpg" alt="RM Property Hub — Find, Invest, Grow" width={340} height={340} priority className="mx-auto mix-blend-screen" />
+          <h1 className="mx-auto mt-2 max-w-xl font-display text-3xl leading-snug text-paper sm:text-4xl">
             {settings.hero_heading}
           </h1>
-          <p className="mx-auto mt-5 max-w-xl text-base text-paper/80">
-            {settings.hero_sub}
-          </p>
-          <div className="thread-divider mx-auto mt-8 w-28 opacity-70" />
-          <div className="mt-9 flex flex-wrap items-center justify-center gap-3">
-            <a href={whatsappLink(settings, "Hi Reena, I would like to ask about property in Miri.")} target="_blank" rel="noopener" className="rounded-md bg-gold px-5 py-2.5 font-medium text-ink transition-colors hover:bg-gold-deep hover:text-paper">Contact Me on WhatsApp</a>
-            <Link href="/loan-calculator" className="rounded-md border border-paper/30 px-5 py-2.5 font-medium text-paper transition-colors hover:border-gold hover:text-gold">Calculate Your Loan</Link>
+          <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
+            <a href={whatsappLink(settings, "Hi Reena, I would like to ask about property in Miri.")} target="_blank" rel="noopener" className="rounded-md bg-gold px-6 py-3 font-medium text-night transition-colors hover:bg-gold-bright">WhatsApp Me</a>
+            <a href="#calculator" className="rounded-md border border-gold/50 px-6 py-3 font-medium text-gold-bright transition-colors hover:border-gold-bright">Calculate Your Loan</a>
           </div>
-          <p className="mt-8 text-xs text-paper/50">
-            {settings.agent_name} · {settings.agent_title} · {settings.ren}
+          <p className="mt-10 text-[11px] tracking-[0.25em] text-paper/40">
+            {settings.agent_name.toUpperCase()} · {settings.ren} · MIRI, SARAWAK
           </p>
         </div>
       </section>
 
-      <section className="mx-auto max-w-5xl px-4 py-16 sm:px-6">
-        <div className="grid gap-10 md:grid-cols-2 md:items-center">
-          <div>
-            <h2 className="font-display text-3xl text-ink">A personal advisor, not a portal</h2>
-            <div className="thread-divider mt-4 w-24" />
-            <p className="mt-5 leading-relaxed text-stone">{settings.bio_short}</p>
-            <p className="mt-6"><Link href="/about" className="text-sm font-medium text-gold-deep underline-offset-4 hover:underline">About Me →</Link></p>
-          </div>
-          <div className={card}>
-            <p className="text-xs font-medium uppercase tracking-wide text-gold-deep">Plan your purchase</p>
-            <p className="mt-2 font-display text-2xl text-ink">What could your monthly repayment be?</p>
-            <p className="mt-3 text-sm text-stone">Estimate instalments for any property price, down payment and tenure — in seconds.</p>
-            <p className="mt-5"><Link href="/loan-calculator" className="inline-block rounded-md bg-ink px-4 py-2.5 text-sm font-medium text-paper transition-colors hover:bg-ink-soft">Calculate Your Loan</Link></p>
-          </div>
-        </div>
-      </section>
-
-      <section className="bg-white/50">
-        <div className="mx-auto max-w-5xl px-4 py-16 sm:px-6">
-          <h2 className="text-center font-display text-3xl text-ink">How I can help</h2>
-          <div className="thread-divider mx-auto mt-4 w-24" />
-          <div className="mt-10 grid gap-5 md:grid-cols-3">
+      <section className="border-t border-gold/15">
+        <div className="mx-auto max-w-5xl px-4 py-14 sm:px-6">
+          <div className="grid gap-px overflow-hidden rounded-lg border border-gold/20 bg-gold/20 md:grid-cols-3">
             {(services ?? []).map((s) => (
-              <div key={s.id} className={card}>
-                <h3 className="font-display text-xl text-ink">{s.title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-stone">{s.description}</p>
+              <div key={s.id} className="bg-night-soft px-7 py-9">
+                <div className="thread-divider w-10" />
+                <h2 className="mt-4 font-display text-xl text-gold-bright">{s.title}</h2>
+                <p className="mt-2 text-sm leading-relaxed text-paper/60">{s.description}</p>
               </div>
             ))}
           </div>
-          <p className="mt-8 text-center"><Link href="/services" className="text-sm font-medium text-gold-deep underline-offset-4 hover:underline">All Services →</Link></p>
         </div>
       </section>
 
-      <section className="mx-auto max-w-5xl px-4 py-16 sm:px-6">
-        <div className="rounded-lg border border-gold/40 bg-champagne/30 px-6 py-8 text-center">
-          <h2 className="font-display text-2xl text-ink">Already working with me?</h2>
-          <p className="mx-auto mt-2 max-w-lg text-sm text-stone">
-            Upload your supporting documents securely using the personal link I
-            sent you — no account needed.
+      <section id="calculator" className="bg-paper text-ink">
+        <div className="mx-auto max-w-5xl px-4 py-16 sm:px-6">
+          <div className="text-center">
+            <p className="text-xs tracking-[0.25em] text-gold-deep">PLAN YOUR PURCHASE</p>
+            <h2 className="mt-3 font-display text-3xl text-ink">Home Loan Calculator</h2>
+            <div className="thread-divider mx-auto mt-4 w-24" />
+          </div>
+          <Calculator defaults={loanDefaults} />
+          <p className="mt-8 text-center text-xs leading-relaxed text-stone">
+            These calculations are estimates only. Actual rates, fees and loan
+            approval depend on the financial institution and the applicant&apos;s
+            circumstances.
           </p>
-          <p className="mt-5"><Link href="/upload-documents" className="inline-block rounded-md border border-gold px-4 py-2.5 text-sm font-medium text-ink transition-colors hover:bg-gold hover:text-paper">Upload Documents</Link></p>
+        </div>
+      </section>
+
+      <section className="border-t border-gold/15">
+        <div className="mx-auto max-w-5xl px-4 py-14 sm:px-6">
+          <div className="rounded-lg border border-gold/20 bg-night-soft px-7 py-9 text-center">
+            <p className="font-display text-2xl text-paper">Already working with me?</p>
+            <p className="mt-2 text-sm text-paper/60">Upload your documents through your secure personal link.</p>
+            <p className="mt-6"><Link href="/upload-documents" className="inline-block rounded-md border border-gold/50 px-5 py-2.5 text-sm font-medium text-gold-bright transition-colors hover:border-gold-bright">Upload Documents</Link></p>
+          </div>
         </div>
       </section>
     </main>
