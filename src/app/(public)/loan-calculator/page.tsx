@@ -34,10 +34,7 @@ export default async function LoanCalculatorPage() {
     <main className="min-h-dvh bg-paper px-4 py-10 sm:px-6">
       <div className="mx-auto w-full max-w-2xl">
         <header className="text-center">
-          <p className="font-display text-2xl text-ink">RM Property Hub</p>
-          <p className="mt-1 text-xs tracking-wide text-stone">Find · Invest · Grow</p>
-          <div className="thread-divider mx-auto mt-5 w-24" />
-          <h1 className="mt-8 font-display text-3xl text-ink">Home Loan Calculator</h1>
+          <h1 className="font-display text-3xl text-ink">Home Loan Calculator</h1>
           <p className="mt-2 text-sm text-stone">
             Estimate your monthly repayment for a Malaysian home loan.
           </p>
