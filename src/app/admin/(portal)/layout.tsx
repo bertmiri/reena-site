@@ -2,6 +2,16 @@ import Link from "next/link";
 import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 import { signOut } from "@/app/admin/login/actions";
+import { MobileNav, type MobileNavLink } from "@/components/mobile-nav";
+
+const NAV: MobileNavLink[] = [
+  { href: "/admin", label: "Dashboard" },
+  { href: "/admin/clients", label: "Clients" },
+  { href: "/admin/settings/website", label: "Website" },
+  { href: "/admin/settings/services", label: "Services" },
+  { href: "/admin/settings/account", label: "Account" },
+  { href: "/admin/settings/loan", label: "Loan Settings" },
+];
 
 export default async function PortalLayout({
   children,
@@ -28,26 +38,14 @@ export default async function PortalLayout({
           <p className="mt-0.5 text-xs tracking-wide text-stone">Agent Portal</p>
         </div>
         <nav className="mt-8 flex flex-1 flex-col gap-1 text-sm">
-          <Link href="/admin" className={navLink}>
-            Dashboard
-          </Link>
-          <Link href="/admin/clients" className={navLink}>
-            Clients
-          </Link>
-          <Link href="/admin/settings/website" className={navLink}>Website</Link>
-          <Link href="/admin/settings/services" className={navLink}>Services</Link>
-          <Link href="/admin/settings/account" className={navLink}>Account</Link>
-          <Link href="/admin/settings/loan" className={navLink}>Loan Settings</Link>
+          {NAV.map((l) => (
+            <Link key={l.href} href={l.href} className={navLink}>{l.label}</Link>
+          ))}
         </nav>
         <div className="border-t border-sand pt-4">
           <p className="truncate px-3 text-xs text-stone">{user.email}</p>
           <form action={signOut} className="mt-2 px-3">
-            <button
-              type="submit"
-              className="text-sm text-stone transition-colors hover:text-hibiscus-deep"
-            >
-              Log out
-            </button>
+            <button type="submit" className="text-sm text-stone transition-colors hover:text-hibiscus-deep">Log out</button>
           </form>
         </div>
       </aside>
@@ -55,17 +53,18 @@ export default async function PortalLayout({
       <div className="flex-1">
         <header className="flex items-center justify-between border-b border-sand px-4 py-3 md:hidden">
           <p className="font-display text-lg text-ink">RM Property Hub</p>
-          <nav className="flex gap-4 text-sm text-ink">
-            <Link href="/admin">Dashboard</Link>
-            <Link href="/admin/clients">Clients</Link>
-            <Link href="/admin/settings/website">Website</Link>
-            <Link href="/admin/settings/services">Services</Link>
-            <Link href="/admin/settings/account">Account</Link>
-            <Link href="/admin/settings/loan">Loan</Link>
-            <form action={signOut}>
-              <button type="submit" className="text-hibiscus-deep">Log out</button>
-            </form>
-          </nav>
+          <MobileNav
+            links={NAV}
+            variant="portal"
+            footer={
+              <div className="border-t border-sand pt-4">
+                <p className="truncate text-xs text-stone">{user.email}</p>
+                <form action={signOut} className="mt-2">
+                  <button type="submit" className="text-sm text-hibiscus-deep">Log out</button>
+                </form>
+              </div>
+            }
+          />
         </header>
         <main className="p-6 md:p-10">{children}</main>
       </div>

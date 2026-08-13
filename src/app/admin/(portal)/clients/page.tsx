@@ -44,7 +44,7 @@ export default async function ClientsPage({
   const rows = clients ?? [];
 
   const badge =
-    "inline-block rounded-full bg-champagne/70 px-2.5 py-0.5 text-xs text-ink";
+    "inline-block shrink-0 rounded-full bg-champagne/70 px-2.5 py-0.5 text-xs text-ink";
   const exportBtn =
     "rounded-md border border-sand px-3 py-1.5 text-xs text-ink transition-colors hover:border-gold";
 
@@ -64,15 +64,15 @@ export default async function ClientsPage({
         </p>
       )}
 
-      <form method="get" className="mt-6 flex gap-2">
+      <form method="get" className="mt-6 flex flex-wrap gap-2">
         <input
           type="search"
           name="q"
           defaultValue={search}
           placeholder="Search name, email, phone or reference"
-          className="w-full max-w-md rounded-md border border-sand bg-white px-3.5 py-2 text-sm text-ink placeholder:text-stone/60 focus:border-gold"
+          className="min-w-0 flex-1 rounded-md border border-sand bg-white px-3.5 py-2 text-sm text-ink placeholder:text-stone/60 focus:border-gold"
         />
-        <button type="submit" className="rounded-md border border-sand px-4 py-2 text-sm text-ink transition-colors hover:border-gold">Search</button>
+        <button type="submit" className="shrink-0 rounded-md border border-sand px-4 py-2 text-sm text-ink transition-colors hover:border-gold">Search</button>
       </form>
 
       <form id="export-form" method="post" action="/api/admin/export" className="hidden" />
@@ -126,11 +126,11 @@ export default async function ClientsPage({
 
           <div className="mt-6 space-y-3 md:hidden">
             {rows.map((c) => (
-              <div key={c.id} className="flex items-center gap-3 rounded-lg border border-sand bg-white/60 px-4 py-3">
-                <input type="checkbox" name="client_ids" value={c.id} form="export-form" className="accent-[#8c7030]" />
+              <div key={c.id} className="flex items-start gap-3 rounded-lg border border-sand bg-white/60 px-4 py-3">
+                <input type="checkbox" name="client_ids" value={c.id} form="export-form" className="mt-1 accent-[#8c7030]" />
                 <Link href={`/admin/clients/${c.id}`} className="min-w-0 flex-1">
-                  <div className="flex items-center justify-between gap-2">
-                    <p className="truncate font-medium text-ink">{c.full_name}</p>
+                  <div className="flex items-start justify-between gap-2">
+                    <p className="min-w-0 break-words font-medium text-ink">{c.full_name}</p>
                     <span className={badge}>{STATUS_LABELS[c.status as ClientStatus]}</span>
                   </div>
                   <p className="mt-1 font-mono text-xs text-stone">{c.application_reference}</p>
