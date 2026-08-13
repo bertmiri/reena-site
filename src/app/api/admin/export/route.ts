@@ -10,6 +10,13 @@ function backWithError(req: NextRequest, message: string) {
   return NextResponse.redirect(url, 303);
 }
 
+
+
+
+export async function GET() {
+  return NextResponse.json({ error: "Method not allowed." }, { status: 405 });
+}
+
 export async function POST(req: NextRequest) {
   const supabase = await createClient();
   const {

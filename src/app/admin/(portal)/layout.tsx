@@ -62,6 +62,9 @@ export default async function PortalLayout({
             <Link href="/admin/settings/services">Services</Link>
             <Link href="/admin/settings/account">Account</Link>
             <Link href="/admin/settings/loan">Loan</Link>
+            <form action={signOut}>
+              <button type="submit" className="text-hibiscus-deep">Log out</button>
+            </form>
           </nav>
         </header>
         <main className="p-6 md:p-10">{children}</main>

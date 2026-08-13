@@ -38,7 +38,11 @@ export async function validateUploadToken(
     .single();
 
   if (error) {
-    console.error("[upload-validate] query error:", error.code, error.message);
+    // PGRST116 = no row matched the token hash; that is the normal
+    // "invalid/unknown link" path, not an error worth logging.
+    if (error.code !== "PGRST116") {
+      console.error("[upload-validate] query error:", error.code, error.message);
+    }
     return null;
   }
   if (!request) {
