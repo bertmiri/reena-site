@@ -34,6 +34,7 @@ export default async function PortalLayout({
           <Link href="/admin/clients" className={navLink}>
             Clients
           </Link>
+          <Link href="/admin/settings/account" className={navLink}>Settings</Link>
         </nav>
         <div className="border-t border-sand pt-4">
           <p className="truncate px-3 text-xs text-stone">{user.email}</p>
@@ -54,6 +55,7 @@ export default async function PortalLayout({
           <nav className="flex gap-4 text-sm text-ink">
             <Link href="/admin">Dashboard</Link>
             <Link href="/admin/clients">Clients</Link>
+            <Link href="/admin/settings/account">Settings</Link>
           </nav>
         </header>
         <main className="p-6 md:p-10">{children}</main>
