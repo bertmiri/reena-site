@@ -34,6 +34,7 @@ export default async function PortalLayout({
           <Link href="/admin/clients" className={navLink}>
             Clients
           </Link>
+          <Link href="/admin/settings/website" className={navLink}>Website</Link>
           <Link href="/admin/settings/account" className={navLink}>Account</Link>
           <Link href="/admin/settings/loan" className={navLink}>Loan Settings</Link>
         </nav>
@@ -56,6 +57,7 @@ export default async function PortalLayout({
           <nav className="flex gap-4 text-sm text-ink">
             <Link href="/admin">Dashboard</Link>
             <Link href="/admin/clients">Clients</Link>
+            <Link href="/admin/settings/website">Website</Link>
             <Link href="/admin/settings/account">Account</Link>
             <Link href="/admin/settings/loan">Loan</Link>
           </nav>
