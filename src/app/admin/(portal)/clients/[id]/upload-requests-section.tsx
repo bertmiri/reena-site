@@ -56,7 +56,12 @@ export async function UploadRequestsSection({
                     ? "Expired"
                     : "Active";
             const cats = (r.upload_request_documents ?? [])
-              .map((d) => d.document_categories?.name)
+              .map((d) => {
+                const c = Array.isArray(d.document_categories)
+                  ? d.document_categories[0]
+                  : d.document_categories;
+                return c?.name;
+              })
               .filter(Boolean)
               .join(", ");
             return (
