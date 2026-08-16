@@ -21,7 +21,7 @@ export default async function AboutPage() {
         <p className="mx-auto mt-8 max-w-md leading-relaxed text-paper/70">
           {settings.bio_short}
         </p>
-        <p className="mx-auto mt-4 max-w-md text-sm text-paper/50">
+        <p className="mx-auto mt-4 max-w-md text-sm text-paper/75">
           Based in Miri, Sarawak — serving home buyers, sellers and investors
           across the region.
         </p>

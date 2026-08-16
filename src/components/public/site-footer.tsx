@@ -12,7 +12,7 @@ export function SiteFooter({ settings }: { settings: SiteSettings }) {
             <p className="mt-4 text-sm text-paper/80">
               {settings.agent_name} · {settings.agent_title}
             </p>
-            <p className="text-xs text-paper/60">{settings.ren}</p>
+            <p className="text-xs text-paper/80">{settings.ren}</p>
           </div>
           <div className="text-sm">
             <p className="text-xs font-medium uppercase tracking-wide text-gold">Contact</p>
@@ -27,7 +27,7 @@ export function SiteFooter({ settings }: { settings: SiteSettings }) {
           </div>
         </div>
         <div className="thread-divider mt-10 opacity-40" />
-        <div className="mt-6 flex flex-wrap items-center justify-between gap-3 text-xs text-paper/60">
+        <div className="mt-6 flex flex-wrap items-center justify-between gap-3 text-xs text-paper/80">
           <p>© {new Date().getFullYear()} {settings.agent_name} · RM Property Hub</p>
           <p><Link href="/upload-documents" className="transition-colors hover:text-paper">Secure Document Upload</Link></p>
         </div>

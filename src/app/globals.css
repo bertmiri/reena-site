@@ -5,11 +5,11 @@
   --color-paper: #faf7f2;
   --color-ink: #201d19;
   --color-ink-soft: #35312a;
-  --color-gold: #a8873b;
+  --color-gold: #b8933f;
   --color-gold-deep: #8c7030;
   --color-champagne: #eadfc8;
   --color-sand: #e8dfd2;
-  --color-stone: #6b655c;
+  --color-stone: #5a544b;
   --color-hibiscus: #a63a32;
   --color-hibiscus-deep: #8c2f28;
   --color-white: #ffffff;
@@ -23,12 +23,23 @@
   color-scheme: light;
 }
 
+html {
+  font-size: 17px;
+}
+
 body {
   background-color: var(--color-paper);
   color: var(--color-ink);
   font-family: var(--font-sans);
+  font-weight: 400;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
+}
+
+/* Display serif: use a heavier weight so it renders crisp, not thin/blurry */
+:where(h1, h2, h3, .font-display) {
+  font-weight: 600;
 }
 
 ::selection {
@@ -91,5 +102,5 @@ body {
 @theme inline {
   --color-night: #121110;
   --color-night-soft: #1c1915;
-  --color-gold-bright: #d4af5f;
+  --color-gold-bright: #e6c069;
 }

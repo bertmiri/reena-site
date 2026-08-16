@@ -44,10 +44,10 @@ export default async function HomePage() {
             {settings.hero_heading}
           </h1>
           <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
-            <a href={whatsappLink(settings, "Hi Reena, I would like to ask about property in Miri.")} target="_blank" rel="noopener" className="rounded-md bg-gold px-6 py-3 font-medium text-night transition-colors hover:bg-gold-bright">WhatsApp Me</a>
+            <a href={whatsappLink(settings, "Hi Reena, I would like to ask about property in Miri.")} target="_blank" rel="noopener" className="rounded-md bg-gold px-6 py-3 font-semibold text-night transition-colors hover:bg-gold-bright">WhatsApp Me</a>
             <a href="#calculator" className="rounded-md border border-gold/50 px-6 py-3 font-medium text-gold-bright transition-colors hover:border-gold-bright">Calculate Your Loan</a>
           </div>
-          <p className="mt-10 text-[11px] tracking-[0.25em] text-paper/40">
+          <p className="mt-10 text-xs tracking-[0.2em] text-paper/80">
             {settings.agent_name.toUpperCase()} · {settings.ren} · MIRI, SARAWAK
           </p>
         </div>
@@ -60,7 +60,7 @@ export default async function HomePage() {
               <div key={s.id} className="bg-night-soft px-7 py-9">
                 <div className="thread-divider w-10" />
                 <h2 className="mt-4 font-display text-xl text-gold-bright">{s.title}</h2>
-                <p className="mt-2 text-sm leading-relaxed text-paper/60">{s.description}</p>
+                <p className="mt-2 text-sm leading-relaxed text-paper/80">{s.description}</p>
               </div>
             ))}
           </div>
@@ -87,7 +87,7 @@ export default async function HomePage() {
         <div className="mx-auto max-w-5xl px-4 py-14 sm:px-6">
           <div className="rounded-lg border border-gold/20 bg-night-soft px-7 py-9 text-center">
             <p className="font-display text-2xl text-paper">Already working with me?</p>
-            <p className="mt-2 text-sm text-paper/60">Upload your documents through your secure personal link.</p>
+            <p className="mt-2 text-sm text-paper/80">Upload your documents through your secure personal link.</p>
             <p className="mt-6"><Link href="/upload-documents" className="inline-block rounded-md border border-gold/50 px-5 py-2.5 text-sm font-medium text-gold-bright transition-colors hover:border-gold-bright">Upload Documents</Link></p>
           </div>
         </div>

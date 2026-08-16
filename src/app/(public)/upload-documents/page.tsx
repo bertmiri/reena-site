@@ -18,7 +18,7 @@ export default async function UploadDocumentsPage() {
           When we work together, I send you a personal secure link on WhatsApp.
           Open it, upload your documents, done — no account, no passwords.
         </p>
-        <p className="mx-auto mt-4 max-w-md text-sm text-paper/50">
+        <p className="mx-auto mt-4 max-w-md text-sm text-paper/75">
           Every link is private to you, expires automatically, and your files
           are stored encrypted — only I can access them.
         </p>

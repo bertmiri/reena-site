@@ -39,7 +39,7 @@ export default async function ContactPage({
               <p><a href={`tel:${settings.phone.replace(/[^+\d]/g, "")}`} className="text-paper/70 transition-colors hover:text-paper">Call — {settings.phone}</a></p>
               <p><a href={`mailto:${settings.email}`} className="text-paper/70 transition-colors hover:text-paper">Email — {settings.email}</a></p>
             </div>
-            <p className="mt-8 text-xs text-paper/40">
+            <p className="mt-8 text-xs text-paper/80">
               {settings.agent_name} · {settings.agent_title} · {settings.ren}
             </p>
           </div>
@@ -48,7 +48,7 @@ export default async function ContactPage({
             {sent ? (
               <div className="rounded-lg border border-gold/30 bg-night-soft px-6 py-8 text-center">
                 <p className="font-display text-2xl text-gold-bright">Message sent</p>
-                <p className="mt-2 text-sm text-paper/60">Thank you — I will be in touch soon.</p>
+                <p className="mt-2 text-sm text-paper/80">Thank you — I will be in touch soon.</p>
               </div>
             ) : (
               <form action={submitEnquiry} className="space-y-4">
