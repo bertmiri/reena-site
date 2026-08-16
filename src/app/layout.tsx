@@ -1,20 +1,27 @@
-import type { Metadata } from "next";
-import { Cormorant_Garamond, Jost } from "next/font/google";
+import type { Metadata, Viewport } from "next";
+import { Playfair_Display, Jost } from "next/font/google";
 import "./globals.css";
 
 const jost = Jost({
   subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
   variable: "--font-jost",
   display: "swap",
 });
 
-const cormorant = Cormorant_Garamond({
+const playfair = Playfair_Display({
   subsets: ["latin"],
   weight: ["500", "600", "700"],
   style: ["normal", "italic"],
   variable: "--font-cormorant",
   display: "swap",
 });
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 5,
+};
 
 export const metadata: Metadata = {
   metadataBase: new URL(
@@ -34,7 +41,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${jost.variable} ${cormorant.variable}`}>
+    <html lang="en" className={`${jost.variable} ${playfair.variable}`}>
       <body>{children}</body>
     </html>
   );
