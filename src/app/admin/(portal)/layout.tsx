@@ -7,6 +7,7 @@ import { MobileNav, type MobileNavLink } from "@/components/mobile-nav";
 const NAV: MobileNavLink[] = [
   { href: "/admin", label: "Dashboard" },
   { href: "/admin/clients", label: "Clients" },
+  { href: "/admin/listings", label: "Listings" },
   { href: "/admin/settings/website", label: "Website" },
   { href: "/admin/settings/services", label: "Services" },
   { href: "/admin/settings/account", label: "Account" },
