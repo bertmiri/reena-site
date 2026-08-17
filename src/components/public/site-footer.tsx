@@ -29,7 +29,7 @@ export function SiteFooter({ settings }: { settings: SiteSettings }) {
         <div className="thread-divider mt-10 opacity-40" />
         <div className="mt-6 flex flex-wrap items-center justify-between gap-3 text-xs text-paper/80">
           <p>© {new Date().getFullYear()} {settings.agent_name} · RM Property Hub</p>
-          <p><Link href="/upload-documents" className="transition-colors hover:text-paper">Secure Document Upload</Link></p>
+          <p className="flex gap-5"><Link href="/upload-documents" className="transition-colors hover:text-paper">Secure Document Upload</Link><Link href="/admin" className="transition-colors hover:text-paper">Agent Login</Link></p>
         </div>
       </div>
     </footer>

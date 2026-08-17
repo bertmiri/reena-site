@@ -41,7 +41,10 @@ export function SiteHeader({
             links={nav}
             variant="public"
             footer={
-              <a href={whatsappLink(settings)} target="_blank" rel="noopener" className="block rounded-md bg-gold px-4 py-3 text-center font-semibold text-night">Contact Me on WhatsApp</a>
+              <div>
+                <a href={whatsappLink(settings)} target="_blank" rel="noopener" className="block rounded-md bg-gold px-4 py-3 text-center font-semibold text-night">Contact Me on WhatsApp</a>
+                <Link href="/admin" className="mt-4 block text-center text-xs tracking-[0.2em] text-paper/50 hover:text-gold-bright">AGENT PORTAL</Link>
+              </div>
             }
           />
         </div>
