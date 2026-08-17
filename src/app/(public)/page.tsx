@@ -2,6 +2,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { createAdminClient } from "@/lib/supabase/admin";
 import { getSiteSettings, whatsappLink } from "@/lib/site-settings";
+import { fetchPublicListings, listingsVisible } from "@/lib/listings-public";
+import { formatListingPrice, type ListingKind } from "@/lib/listings";
 import { Calculator } from "./loan-calculator/calculator";
 
 export const revalidate = 300;
@@ -26,8 +28,14 @@ export default async function HomePage() {
       .single(),
   ]);
 
+  const { visible: showListings } = await listingsVisible();
+  const featured = showListings
+    ? (await fetchPublicListings()).filter((l) => l.status !== "sold").slice(0, 3)
+    : [];
+
   const loanDefaults = {
     rate: Number(loan?.default_interest_rate ?? 4.2),
+
     downPct: Number(loan?.default_down_payment ?? 10),
     tenure: loan?.default_tenure ?? 30,
     minTenure: loan?.minimum_tenure ?? 5,
@@ -52,6 +60,39 @@ export default async function HomePage() {
           </p>
         </div>
       </section>
+
+      {featured.length > 0 && (
+        <section className="border-t border-gold/15">
+          <div className="mx-auto max-w-5xl px-4 py-14 sm:px-6">
+            <div className="flex flex-wrap items-end justify-between gap-3">
+              <div>
+                <p className="text-xs tracking-[0.25em] text-gold-bright">FEATURED</p>
+                <h2 className="mt-2 font-display text-3xl text-paper">Properties</h2>
+              </div>
+              <Link href="/listings" className="text-xs tracking-[0.2em] text-paper/75 transition-colors hover:text-gold-bright">VIEW ALL →</Link>
+            </div>
+            <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+              {featured.map((l, i) => (
+                <Link key={l.id} href={`/listings/${l.slug}`} style={{ animationDelay: `${i * 60}ms` }} className="rm-rise group block overflow-hidden rounded-lg border border-gold/20 bg-night-soft transition-all duration-300 hover:-translate-y-1 hover:border-gold/50">
+                  <div className="aspect-[4/3] overflow-hidden bg-night">
+                    {l.cover_url ? (
+                      /* eslint-disable-next-line @next/next/no-img-element */
+                      <img src={l.cover_url} alt={l.title} className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" />
+                    ) : (
+                      <div className="flex h-full items-center justify-center text-paper/40">No photo</div>
+                    )}
+                  </div>
+                  <div className="space-y-1 px-5 py-5">
+                    <p className="font-display text-xl text-gold-bright">{formatListingPrice(l.price, l.price_is_from, l.listing_kind as ListingKind)}</p>
+                    <p className="font-medium text-paper">{l.title}</p>
+                    <p className="text-sm text-paper/75">{l.area}</p>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       <section className="border-t border-gold/15">
         <div className="mx-auto max-w-5xl px-4 py-14 sm:px-6">

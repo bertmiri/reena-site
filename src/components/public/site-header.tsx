@@ -10,7 +10,17 @@ const NAV: MobileNavLink[] = [
   { href: "/contact", label: "Contact" },
 ];
 
-export function SiteHeader({ settings }: { settings: SiteSettings }) {
+export function SiteHeader({
+  settings,
+  showListings = false,
+}: {
+  settings: SiteSettings;
+  showListings?: boolean;
+}) {
+  const nav: MobileNavLink[] = showListings
+    ? [NAV[0], { href: "/listings", label: "Properties" }, ...NAV.slice(1)]
+    : NAV;
+
   return (
     <header className="border-b border-gold/20 bg-night">
       <div className="mx-auto flex max-w-5xl items-center justify-between gap-3 px-4 py-4 sm:px-6">
@@ -20,15 +30,15 @@ export function SiteHeader({ settings }: { settings: SiteSettings }) {
         </Link>
 
         <nav className="hidden items-center gap-x-5 text-sm md:flex">
-          {NAV.map((item) => (
-            <Link key={item.href} href={item.href} className="text-paper/70 transition-colors hover:text-gold-bright">{item.label}</Link>
+          {nav.map((item) => (
+            <Link key={item.href} href={item.href} className="text-paper/80 transition-colors hover:text-gold-bright">{item.label}</Link>
           ))}
           <a href={whatsappLink(settings)} target="_blank" rel="noopener" className="rounded-md bg-gold px-3.5 py-2 text-sm font-semibold text-night transition-colors hover:bg-gold-bright">Contact Me</a>
         </nav>
 
         <div className="md:hidden">
           <MobileNav
-            links={NAV}
+            links={nav}
             variant="public"
             footer={
               <a href={whatsappLink(settings)} target="_blank" rel="noopener" className="block rounded-md bg-gold px-4 py-3 text-center font-semibold text-night">Contact Me on WhatsApp</a>
