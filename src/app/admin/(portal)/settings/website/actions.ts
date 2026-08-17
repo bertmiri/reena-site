@@ -19,6 +19,7 @@ const schema = z.object({
   bio_short: z.string().trim().min(10).max(600),
   facebook: z.url().max(200),
   instagram: z.url().max(200),
+  listings_enabled: z.boolean(),
 });
 
 export async function updateWebsiteSettings(formData: FormData) {
@@ -33,6 +34,7 @@ export async function updateWebsiteSettings(formData: FormData) {
     bio_short: formData.get("bio_short") ?? "",
     facebook: formData.get("facebook") ?? "",
     instagram: formData.get("instagram") ?? "",
+    listings_enabled: formData.get("listings_enabled") === "on",
   });
 
   if (!parsed.success) {

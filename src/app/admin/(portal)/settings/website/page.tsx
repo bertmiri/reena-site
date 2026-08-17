@@ -1,4 +1,5 @@
 import { getSiteSettings } from "@/lib/site-settings";
+import { createAdminClient } from "@/lib/supabase/admin";
 import { updateWebsiteSettings } from "./actions";
 
 export const metadata = {
@@ -13,6 +14,14 @@ export default async function WebsiteSettingsPage({
 }) {
   const { ok, error } = await searchParams;
   const s = await getSiteSettings();
+
+  const admin = createAdminClient();
+  const { data: toggleRow } = await admin
+    .from("website_settings")
+    .select("value")
+    .eq("key", "listings_enabled")
+    .single();
+  const listingsEnabled = toggleRow?.value === true || toggleRow?.value === "true";
 
   const inputClass =
     "w-full rounded-md border border-sand bg-white px-3.5 py-2.5 text-ink focus:border-gold";
@@ -88,6 +97,16 @@ export default async function WebsiteSettingsPage({
             <label htmlFor="instagram" className={labelClass}>Instagram URL</label>
             <input id="instagram" name="instagram" type="url" required defaultValue={s.instagram} className={inputClass} />
           </div>
+        </div>
+
+        <div className="rounded-lg border border-gold/40 bg-champagne/30 px-5 py-4">
+          <label className="flex items-start gap-3 text-sm text-ink">
+            <input type="checkbox" name="listings_enabled" defaultChecked={listingsEnabled} className="mt-0.5 accent-[#8c7030]" />
+            <span>
+              <span className="font-medium">Show Properties on my website</span>
+              <span className="mt-0.5 block text-xs text-stone">When off, the properties page and menu link are hidden from visitors. You can still preview them while logged in.</span>
+            </span>
+          </label>
         </div>
 
         <button type="submit" className="rounded-md bg-ink px-5 py-2.5 text-sm font-medium text-paper transition-colors hover:bg-ink-soft">

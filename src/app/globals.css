@@ -104,3 +104,49 @@ body {
   --color-night-soft: #1c1915;
   --color-gold-bright: #e6c069;
 }
+
+/* ---------- Motion: loading + reveal ---------- */
+
+/* Top navigation progress bar */
+@keyframes rm-progress {
+  0% { transform: translateX(-100%); }
+  60% { transform: translateX(-15%); }
+  100% { transform: translateX(-2%); }
+}
+.rm-progress {
+  position: fixed;
+  inset-block-start: 0;
+  inset-inline: 0;
+  z-index: 60;
+  height: 2px;
+  background: linear-gradient(90deg, var(--color-gold), var(--color-gold-bright));
+  transform-origin: left;
+  animation: rm-progress 1.4s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+/* Skeleton shimmer */
+@keyframes rm-shimmer {
+  0% { background-position: -400px 0; }
+  100% { background-position: 400px 0; }
+}
+.rm-skeleton {
+  background-color: var(--color-night-soft);
+  background-image: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(230, 192, 105, 0.07) 50%,
+    transparent 100%
+  );
+  background-size: 400px 100%;
+  background-repeat: no-repeat;
+  animation: rm-shimmer 1.6s ease-in-out infinite;
+}
+
+/* Card reveal on load */
+@keyframes rm-rise {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: none; }
+}
+.rm-rise {
+  animation: rm-rise 3s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
