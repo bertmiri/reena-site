@@ -30,7 +30,7 @@ export async function generateMetadata({
 function Spec({ label, value }: { label: string; value: string }) {
   return (
     <div className="border-b border-gold/15 py-3">
-      <dt className="text-xs uppercase tracking-wide text-paper/50">{label}</dt>
+      <dt className="text-xs uppercase tracking-wide text-mist">{label}</dt>
       <dd className="mt-0.5 text-paper">{value}</dd>
     </div>
   );
@@ -74,7 +74,7 @@ export default async function PropertyPage({
   return (
     <main className="bg-night text-paper">
       <div className="mx-auto max-w-5xl px-4 py-10 sm:px-6">
-        <Link href="/listings" className="text-sm text-paper/70 hover:text-gold-bright">← All properties</Link>
+        <Link href="/listings" className="text-sm text-paper hover:text-gold-bright">← All properties</Link>
 
         {photos.length > 0 ? (
           <div className="mt-4 grid gap-2 sm:grid-cols-2">
@@ -90,7 +90,7 @@ export default async function PropertyPage({
             ))}
           </div>
         ) : (
-          <div className="mt-4 flex aspect-[16/9] items-center justify-center rounded-lg border border-gold/20 bg-night-soft text-paper/40">No photos yet</div>
+          <div className="mt-4 flex aspect-[16/9] items-center justify-center rounded-lg border border-gold/20 bg-night-soft text-mist">No photos yet</div>
         )}
 
         <div className="mt-8 grid gap-10 md:grid-cols-[1fr_320px]">
@@ -99,13 +99,13 @@ export default async function PropertyPage({
               <span className="mb-3 inline-block rounded bg-hibiscus-deep px-2.5 py-1 text-xs font-semibold text-paper">SOLD</span>
             )}
             <h1 className="font-display text-4xl text-paper">{listing.title}</h1>
-            <p className="mt-2 text-paper/70">{listing.area}</p>
+            <p className="mt-2 text-paper">{listing.area}</p>
             <p className="mt-4 font-display text-3xl text-gold-bright">
               {formatListingPrice(listing.price, listing.price_is_from, listing.listing_kind as ListingKind)}
             </p>
 
             {listing.description && (
-              <p className="mt-6 leading-relaxed text-paper/80">{listing.description}</p>
+              <p className="mt-6 leading-relaxed text-paper">{listing.description}</p>
             )}
 
             <dl className="mt-8 grid gap-x-8 sm:grid-cols-2">
@@ -124,10 +124,10 @@ export default async function PropertyPage({
           <aside className="md:sticky md:top-6 md:self-start">
             <div className="rounded-lg border border-gold/25 bg-night-soft px-6 py-6 text-center">
               <p className="font-display text-xl text-paper">Interested?</p>
-              <p className="mt-1 text-sm text-paper/70">Contact {settings.agent_name} directly.</p>
+              <p className="mt-1 text-sm text-paper">Contact {settings.agent_name} directly.</p>
               <a href={whatsappLink(settings, waText)} target="_blank" rel="noopener" className="mt-5 block rounded-md bg-gold px-5 py-3 font-semibold text-night transition-colors hover:bg-gold-bright">WhatsApp about this property</a>
               <a href={`tel:${settings.phone.replace(/[^+\d]/g, "")}`} className="mt-2 block rounded-md border border-gold/40 px-5 py-3 text-sm font-medium text-gold-bright transition-colors hover:border-gold-bright">Call {settings.phone}</a>
-              <p className="mt-4 text-xs text-paper/50">{settings.agent_name} · {settings.ren}</p>
+              <p className="mt-4 text-xs text-mist">{settings.agent_name} · {settings.ren}</p>
             </div>
           </aside>
         </div>

@@ -18,10 +18,10 @@ export default async function AboutPage() {
           {settings.agent_title.toUpperCase()} · {settings.ren}
         </p>
         <div className="thread-divider mx-auto mt-6 w-24 opacity-70" />
-        <p className="mx-auto mt-8 max-w-md leading-relaxed text-paper/70">
+        <p className="mx-auto mt-8 max-w-md leading-relaxed text-paper">
           {settings.bio_short}
         </p>
-        <p className="mx-auto mt-4 max-w-md text-sm text-paper/75">
+        <p className="mx-auto mt-4 max-w-md text-sm text-paper">
           Based in Miri, Sarawak — serving home buyers, sellers and investors
           across the region.
         </p>

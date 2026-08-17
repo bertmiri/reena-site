@@ -19,7 +19,7 @@ export function MobileNav({
   const dark = variant === "public";
   const barText = dark ? "text-paper" : "text-ink";
   const panelBg = dark ? "bg-night text-paper" : "bg-paper text-ink";
-  const linkColor = dark ? "text-paper/80" : "text-ink";
+  const linkColor = dark ? "text-paper" : "text-ink";
 
   return (
     <>

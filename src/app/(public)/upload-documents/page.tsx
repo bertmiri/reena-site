@@ -14,11 +14,11 @@ export default async function UploadDocumentsPage() {
         <p className="text-xs tracking-[0.25em] text-gold-bright">SECURE UPLOAD</p>
         <h1 className="mt-3 font-display text-4xl text-paper">Your documents, protected</h1>
         <div className="thread-divider mx-auto mt-5 w-24 opacity-70" />
-        <p className="mx-auto mt-8 max-w-md leading-relaxed text-paper/70">
+        <p className="mx-auto mt-8 max-w-md leading-relaxed text-paper">
           When we work together, I send you a personal secure link on WhatsApp.
           Open it, upload your documents, done — no account, no passwords.
         </p>
-        <p className="mx-auto mt-4 max-w-md text-sm text-paper/75">
+        <p className="mx-auto mt-4 max-w-md text-sm text-paper">
           Every link is private to you, expires automatically, and your files
           are stored encrypted — only I can access them.
         </p>

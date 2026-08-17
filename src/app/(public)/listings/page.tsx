@@ -67,12 +67,12 @@ export default async function PublicListingsPage({
           <input name="minBeds" type="number" min={0} defaultValue={filters.minBeds ?? ""} placeholder="Min beds" className={field} />
           <button type="submit" className="col-span-2 rounded-md bg-gold px-4 py-2.5 text-sm font-semibold text-night transition-colors hover:bg-gold-bright sm:col-span-4">Search</button>
           {(filters.type || filters.area || filters.maxPrice || filters.minBeds) && (
-            <Link href="/listings" className="col-span-2 text-center text-sm text-paper/70 hover:text-gold-bright sm:col-span-4">Clear filters</Link>
+            <Link href="/listings" className="col-span-2 text-center text-sm text-paper hover:text-gold-bright sm:col-span-4">Clear filters</Link>
           )}
         </form>
 
         {listings.length === 0 ? (
-          <p className="mt-16 text-center text-paper/70">No properties match your search right now.</p>
+          <p className="mt-16 text-center text-paper">No properties match your search right now.</p>
         ) : (
           <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {listings.map((l, i) => (
@@ -81,7 +81,7 @@ export default async function PublicListingsPage({
                   /* eslint-disable-next-line @next/next/no-img-element */
                   <img src={l.cover_url} alt={l.title} className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" />
                 ) : (
-                  <div className="absolute inset-0 flex items-center justify-center bg-night-soft text-paper/40">No photo</div>
+                  <div className="absolute inset-0 flex items-center justify-center bg-night-soft text-mist">No photo</div>
                 )}
                 <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/95 via-black/40 to-black/5" />
                 {l.status === "sold" && (
@@ -90,8 +90,8 @@ export default async function PublicListingsPage({
                 <div className="absolute inset-x-0 bottom-0 p-5">
                   <p className="font-display text-2xl leading-tight text-gold-bright">{formatListingPrice(l.price, l.price_is_from, l.listing_kind as ListingKind)}</p>
                   <p className="mt-1 font-medium leading-snug text-paper">{l.title}</p>
-                  <p className="text-sm text-paper/85">{l.area}</p>
-                  <p className="mt-1.5 text-xs tracking-wide text-paper/80">
+                  <p className="text-sm text-paper">{l.area}</p>
+                  <p className="mt-1.5 text-xs tracking-wide text-paper">
                     {[l.bedrooms != null ? `${l.bedrooms} bed` : null, l.bathrooms != null ? `${l.bathrooms} bath` : null, l.built_up_sqft != null ? `${l.built_up_sqft} sqft` : null].filter(Boolean).join(" · ")}
                   </p>
                 </div>

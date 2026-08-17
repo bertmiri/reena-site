@@ -94,7 +94,7 @@ export default async function HomePage() {
 
           <a href={whatsappLink(settings, "Hi Reena, I would like to ask about property in Miri.")} target="_blank" rel="noopener" className="rm-e4 mx-auto mt-7 block w-full max-w-lg rounded-md bg-gold px-6 py-3.5 font-semibold text-night transition-colors hover:bg-gold-bright">WhatsApp Me</a>
 
-          <p className="rm-e5 mt-10 text-[11px] tracking-[0.28em] text-paper/70">
+          <p className="rm-e5 mt-10 text-[11px] tracking-[0.28em] text-paper">
             {settings.agent_name.toUpperCase()} · {settings.ren} · MIRI, SARAWAK
           </p>
         </div>
@@ -108,7 +108,7 @@ export default async function HomePage() {
               <SectionHead
                 eyebrow="FEATURED"
                 title="Properties"
-                action={<Link href="/listings" className="text-[11px] tracking-[0.22em] text-paper/70 transition-colors hover:text-gold-bright">VIEW ALL →</Link>}
+                action={<Link href="/listings" className="text-[11px] tracking-[0.22em] text-paper transition-colors hover:text-gold-bright">VIEW ALL →</Link>}
               />
             </Reveal>
 
@@ -120,14 +120,14 @@ export default async function HomePage() {
                       /* eslint-disable-next-line @next/next/no-img-element */
                       <img src={l.cover_url} alt={l.title} className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" />
                     ) : (
-                      <div className="absolute inset-0 flex items-center justify-center bg-night-soft text-paper/40">No photo</div>
+                      <div className="absolute inset-0 flex items-center justify-center bg-night-soft text-mist">No photo</div>
                     )}
                     <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/95 via-black/40 to-black/5" />
                     <div className="absolute inset-x-0 bottom-0 p-5">
                       <p className="font-display text-2xl leading-tight text-gold-bright">{formatListingPrice(l.price, l.price_is_from, l.listing_kind as ListingKind)}</p>
                       <p className="mt-1 font-medium leading-snug text-paper">{l.title}</p>
-                      <p className="text-sm text-paper/85">{l.area}</p>
-                      <p className="mt-1.5 text-xs tracking-wide text-paper/80">
+                      <p className="text-sm text-paper">{l.area}</p>
+                      <p className="mt-1.5 text-xs tracking-wide text-paper">
                         {[l.bedrooms != null ? `${l.bedrooms} bed` : null, l.bathrooms != null ? `${l.bathrooms} bath` : null, l.built_up_sqft != null ? `${l.built_up_sqft} sqft` : null].filter(Boolean).join(" · ")}
                       </p>
                     </div>
@@ -150,7 +150,7 @@ export default async function HomePage() {
               <Reveal key={s.id} delay={i * 80} className="h-full">
                 <div className="flex h-full flex-col rounded-lg border border-gold/20 bg-night-soft px-6 py-7">
                   <h3 className="font-display text-2xl leading-tight text-gold-bright">{s.title}</h3>
-                  <p className="mt-3 text-sm leading-relaxed text-paper/80">{s.description}</p>
+                  <p className="mt-3 text-sm leading-relaxed text-paper">{s.description}</p>
                 </div>
               </Reveal>
             ))}
@@ -182,7 +182,7 @@ export default async function HomePage() {
             <div className="flex flex-wrap items-center justify-between gap-6 rounded-lg border border-gold/20 bg-night-soft px-7 py-8">
               <div>
                 <p className="font-display text-2xl text-paper">Already working with me?</p>
-                <p className="mt-2 max-w-md text-sm text-paper/80">Upload your documents through your secure personal link.</p>
+                <p className="mt-2 max-w-md text-sm text-paper">Upload your documents through your secure personal link.</p>
               </div>
               <Link href="/upload-documents" className="shrink-0 rounded-md border border-gold/50 px-6 py-3 text-sm font-medium text-gold-bright transition-colors hover:border-gold-bright">Upload Documents</Link>
             </div>

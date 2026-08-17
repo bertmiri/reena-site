@@ -31,7 +31,7 @@ export default async function ServicesPage() {
             <div key={s.id} className="bg-night-soft px-8 py-10">
               <div className="thread-divider w-10" />
               <h2 className="mt-4 font-display text-2xl text-gold-bright">{s.title}</h2>
-              <p className="mt-2 leading-relaxed text-paper/80">{s.description}</p>
+              <p className="mt-2 leading-relaxed text-paper">{s.description}</p>
             </div>
           ))}
         </div>
