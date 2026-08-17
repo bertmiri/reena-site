@@ -11,7 +11,7 @@ export default async function PublicLayout({
   const settings = await getSiteSettings();
   const { visible: showListings } = await listingsVisible();
   return (
-    <div className="flex min-h-dvh flex-col">
+    <div className="flex min-h-dvh flex-col bg-night">
       <SiteHeader settings={settings} showListings={showListings} />
       <div className="flex-1">{children}</div>
       <SiteFooter settings={settings} />
